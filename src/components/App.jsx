@@ -39,6 +39,18 @@ export class App extends React.Component {
     });
   };
 
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts) {
+      this.setState({ contacts });
+    }
+  }
+
+  componentDidUpdate() {
+    const contacts = JSON.stringify(this.state.contacts);
+    localStorage.setItem('contacts', contacts);
+  }
+
   render() {
     const filteredContacts = this.filterContacts();
     return (

@@ -27,8 +27,10 @@ export const Item = styled.li`
 
 export const Text = styled.p`
   display: block;
-  font-size: 20px;
   margin: 0 auto 0 0;
+
+  font-size: 18px;
+  font-weight: 600;
 `;
 
 export const Btn = styled.button`
