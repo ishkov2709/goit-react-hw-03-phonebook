@@ -10,6 +10,18 @@ export class App extends React.Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts) {
+      this.setState({ contacts });
+    }
+  }
+
+  componentDidUpdate() {
+    const contacts = JSON.stringify(this.state.contacts);
+    localStorage.setItem('contacts', contacts);
+  }
+
   addContact = (name, number) => {
     if (this.state.contacts.find(el => el.name === name)) {
       return alert(`${name} is already in contacts`);
@@ -38,18 +50,6 @@ export class App extends React.Component {
       return { contacts: prevState.contacts.filter(el => el.id !== id) };
     });
   };
-
-  componentDidMount() {
-    const contacts = JSON.parse(localStorage.getItem('contacts'));
-    if (contacts) {
-      this.setState({ contacts });
-    }
-  }
-
-  componentDidUpdate() {
-    const contacts = JSON.stringify(this.state.contacts);
-    localStorage.setItem('contacts', contacts);
-  }
 
   render() {
     const filteredContacts = this.filterContacts();
